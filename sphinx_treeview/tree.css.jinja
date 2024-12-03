@@ -1,0 +1,52 @@
+.stv ul, .stv li {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  list-style-image: none;
+}
+
+.stv li li {
+  position: relative;
+  padding: .15rem 0 .15rem 1rem;
+  margin-left: .5rem;
+  border-left: 1px solid #636363;
+}
+
+.stv li li::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -1px;
+  width: .75rem;
+  height: 1.15rem;
+  border-left: 1px solid #636363;
+  border-bottom: 1px solid #636363;
+}
+
+.stv li li:last-child {
+  border-color: transparent;
+}
+
+.stv {
+  margin-bottom: 1rem;
+}
+
+{% for decorator in decorators -%}
+
+[class^="stv-{{ decorator.name }}-"] {
+  display: inline-block;
+  background-repeat: no-repeat;
+  vertical-align: middle;
+}
+
+{% for icon in decorator.icons %}
+.stv-{{ decorator.name }}-{{ icon.name }} {
+  background-image: url('{{ icon.path }}');
+  {%- for property, value in icon.css_properties.items() %}
+  {{ property }}: {{ value }};
+  {% endfor %}
+  width: {{ icon.width }}em;
+  height: {{ icon.height }}em;
+}
+{% endfor %}
+{% endfor %}

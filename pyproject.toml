@@ -1,0 +1,12 @@
+[build-system]
+requires = ["pdm-backend", "pdm-build-locked"]
+build-backend = "pdm.backend"
+
+[project]
+name = "sphinx-treeview"
+version = "0.1.0"
+description = "Add support for tree view to Sphinx."
+authors = [{ name = "theogiraudet", email = "contact@gunivers.net" }, { name = "Aksiome", email = "contact@gunivers.net" }]
+dependencies = ["sphinx", "jinja2"]
+requires-python = "==3.12.*"
+license = { text = "MPL-2.0" }
