@@ -64,7 +64,7 @@ def setup(app: Sphinx):
     app.connect("config-inited", config_inited)
     
     return {
-        "version": version,
+        "version": __version__,
     }
     
     
