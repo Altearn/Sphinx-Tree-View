@@ -10,7 +10,8 @@ from jinja2 import Environment, FileSystemLoader
 
 logger = logging.getLogger(__name__)
 
-__version__ = "0.1.1"
+__version__ = "0.1.3"
+package_dir = os.path.abspath(os.path.dirname(__file__))
 
 class DectoratorRegistry(Enum):
     DIR = "dir"
@@ -31,7 +32,7 @@ def config_inited(app: Sphinx, config: dict):
         for decorator in config.stv_decorators:
             if isinstance(decorator, DecoratorType):
                 decorators.append(decorator)
-                logger.verbose(f"Tree view decorator '{decorator.value}' added.")
+                logger.verbose(f"Tree view decorator '{decorator.name}' added.")
             else:
                 logger.error(f"Invalid decorator type: {type(decorator)}")
                 
