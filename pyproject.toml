@@ -4,9 +4,10 @@ build-backend = "pdm.backend"
 
 [project]
 name = "sphinx-treeview"
-version = "0.1.0"
+version = "0.1.1"
 description = "Add support for tree view to Sphinx."
 authors = [{ name = "theogiraudet", email = "theo.giraudet@altearn.xyz" }, { name = "Aksiome", email = "maxime.calmon@altearn.xyz" }]
 dependencies = ["sphinx", "jinja2"]
 requires-python = "==3.12.*"
 license = { text = "MPL-2.0" }
+readme = "README.md"

@@ -10,7 +10,7 @@ from jinja2 import Environment, FileSystemLoader
 
 logger = logging.getLogger(__name__)
 
-version = "0.1.0"
+__version__ = "0.1.1"
 
 class DectoratorRegistry(Enum):
     DIR = "dir"
