@@ -13,7 +13,7 @@ logger = logging.getLogger(__name__)
 __version__ = "0.1.3"
 package_dir = os.path.abspath(os.path.dirname(__file__))
 
-class DectoratorRegistry(Enum):
+class DecoratorRegistry(Enum):
     DIR = "dir"
     
     
@@ -37,7 +37,7 @@ def config_inited(app: Sphinx, config: dict):
                 logger.error(f"Invalid decorator type: {type(decorator)}")
                 
     if not config.stv_disable_default_decorators:
-        for decorator in DectoratorRegistry:
+        for decorator in DecoratorRegistry:
             dir_type = DecoratorType(decorator.value, imagesToDecoratorIcons(Path(__file__).parent / '_static' / 'stv' / 'images' / decorator.value, f"stv/images/{decorator.value}"))
             decorators.append(dir_type)
             logger.verbose(f"Tree decorator '{decorator.value}' added.")
@@ -64,12 +64,10 @@ def setup(app: Sphinx):
         
     app.connect("config-inited", config_inited)
     
-    # Ajout du fichier JavaScript
     app.add_js_file('stv/treeview.js')
     
     return {
         "version": __version__,
-        'version': '0.1',
         'parallel_read_safe': True,
         'parallel_write_safe': True,
     }
