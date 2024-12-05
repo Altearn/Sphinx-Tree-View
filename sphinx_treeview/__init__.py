@@ -64,8 +64,14 @@ def setup(app: Sphinx):
         
     app.connect("config-inited", config_inited)
     
+    # Ajout du fichier JavaScript
+    app.add_js_file('stv/treeview.js')
+    
     return {
         "version": __version__,
+        'version': '0.1',
+        'parallel_read_safe': True,
+        'parallel_write_safe': True,
     }
     
     

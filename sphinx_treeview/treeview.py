@@ -4,10 +4,17 @@ from sphinx.util.docutils import SphinxDirective
 
 class TreeViewDirective(SphinxDirective):
     has_content = True
+    option_spec = {
+        'collapsible': lambda x: True if x.lower() == 'true' else False
+    }
 
     def run(self):
         container = nodes.container()
         container.set_class("stv")
+        
+        if not self.options.get('collapsible', True):
+            container.set_class("no-collapse")
+            
         list_node = nodes.bullet_list()
         list_nodes = [list_node]
 
@@ -20,6 +27,10 @@ class TreeViewDirective(SphinxDirective):
                 if not list_nodes[-1].children or not isinstance(list_nodes[-1].children[-1], nodes.list_item):
                     list_nodes[-1] += new_item_node
                 new_list_node = nodes.bullet_list()
+                
+                collapse_trigger = nodes.raw('', '<span class="collapse-trigger"></span>', format='html')
+                new_item_node += collapse_trigger
+                
                 list_nodes[-1].children[-1] += new_list_node
                 list_nodes.append(new_list_node)
 

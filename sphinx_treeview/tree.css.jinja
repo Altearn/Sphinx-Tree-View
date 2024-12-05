@@ -7,7 +7,7 @@
 
 .stv li li {
   position: relative;
-  padding: .15rem 0 .15rem 1rem;
+  padding: .15rem 0 .15rem 1.5rem;
   margin-left: .5rem;
   border-left: 1px solid #636363;
 }
@@ -50,3 +50,36 @@
 }
 {% endfor %}
 {% endfor %}
+
+.stv .collapse-trigger {
+  display: none;
+  position: absolute;
+  left: 0.2rem;
+  top: 0.2rem;
+  width: 0.8rem;
+  height: 0.8rem;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.stv li:hover > .collapse-trigger {
+  display: block;
+}
+
+.stv .collapse-trigger::before {
+  content: "▾";
+  position: absolute;
+  font-size: 0.8rem;
+}
+
+.stv .collapsed > .collapse-trigger::before {
+  transform: rotate(-90deg);
+}
+
+.stv .collapsed > ul {
+  display: none;
+}
+
+.stv.no-collapse .collapse-trigger {
+  display: none !important;
+}
