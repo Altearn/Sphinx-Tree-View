@@ -42,7 +42,7 @@ For example, with the default decorator "dir":
 
 The rendered tree view will look like this:
 
-![Tree View](imgs/example.png)
+![Tree View](https://raw.githubusercontent.com/Gunivers/Sphinx-Minecraft/main/imgs/example.png)
 
 ## Configuration Options
 
