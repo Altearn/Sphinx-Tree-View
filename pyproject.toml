@@ -4,7 +4,7 @@ build-backend = "pdm.backend"
 
 [project]
 name = "sphinx-treeview"
-version = "1.0.0"
+version = "1.0.1"
 description = "Add support for tree view to Sphinx."
 authors = [{ name = "theogiraudet", email = "theo.giraudet@altearn.xyz" }, { name = "Aksiome", email = "maxime.calmon@altearn.xyz" }]
 dependencies = ["sphinx", "jinja2"]
@@ -12,7 +12,6 @@ requires-python = "==3.12.*"
 license = { text = "MPL-2.0" }
 readme = "README.md"
 classifiers = [
-    "Development Status :: 4 - Beta",
     "Intended Audience :: Developers",
     "Framework :: Sphinx :: Extension", 
     "License :: OSI Approved :: Mozilla Public License 2.0 (MPL 2.0)",
