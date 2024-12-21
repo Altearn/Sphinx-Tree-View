@@ -4,9 +4,6 @@ from sphinx.util.docutils import SphinxDirective
 
 class TreeViewDirective(SphinxDirective):
     has_content = True
-    option_spec = {
-        'collapsible': lambda x: True if x.lower() == 'true' else False
-    }
 
     def run(self):
         container = nodes.container()
