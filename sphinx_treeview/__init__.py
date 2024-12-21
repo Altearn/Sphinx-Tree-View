@@ -1,4 +1,5 @@
 from enum import Enum
+import importlib
 import os
 from pathlib import Path
 from sphinx.util import logging
@@ -10,7 +11,7 @@ from jinja2 import Environment, FileSystemLoader
 
 logger = logging.getLogger(__name__)
 
-__version__ = "0.1.3"
+__version__ = importlib.metadata.version('sphinx-treeview')
 package_dir = os.path.abspath(os.path.dirname(__file__))
 
 class DecoratorRegistry(Enum):
