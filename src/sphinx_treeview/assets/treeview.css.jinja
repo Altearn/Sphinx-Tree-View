@@ -1,0 +1,84 @@
+:root {
+  --treeview-indent: 1.5rem;
+  --treeview-spacing: 0.2rem;
+  --treeview-icon-width: 1.3em;
+  --treeview-icon-height: 1.3em;
+  --treeview-color: oklch(0.5 0 0);
+  --treeview-thickness: 1px;
+}
+
+.treeview :is(ul,li) {
+  margin: 0;
+  padding: 0;
+  position: relative;
+  list-style-type: none;
+  list-style-image: none;
+}
+
+.treeview li > :not(ul) {
+  display: flex;
+  align-items: center;
+  gap: calc(var(--treeview-spacing) * 1.5);
+  margin: 0!important;
+  padding: 0!important;
+}
+
+.treeview li li {
+  margin-left: calc(calc(var(--treeview-icon-width) / 2) - calc(var(--treeview-thickness) / 2) - 1px);
+  padding-block: var(--treeview-spacing);
+  padding-left: calc(var(--treeview-indent) - .5em);
+  background:
+    linear-gradient(var(--treeview-color, #333), var(--treeview-color, #333)) 0 0 / var(--treeview-thickness, 1px) 100% no-repeat;
+}
+
+.treeview li li:last-child {
+  background: none;
+}
+
+.treeview li li::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: calc(var(--treeview-indent) - .75em);
+  height: calc(var(--treeview-spacing) + .75em + calc(var(--treeview-thickness) / 2) + 1px);
+  background:
+    linear-gradient(var(--treeview-color, #333), var(--treeview-color, #333)) 0 0 / var(--treeview-thickness, 1px) 100% no-repeat,
+    linear-gradient(var(--treeview-color, #333), var(--treeview-color, #333)) 0 100% / 100% var(--treeview-thickness, 1px) no-repeat;
+}
+
+.treeview li.collapsed > ul {
+  display: none;
+}
+
+.treeview-icon {
+  display: inline-block;
+  background-repeat: no-repeat;
+  width: var(--treeview-icon-width);
+  height: var(--treeview-icon-height);
+}
+
+{% for decorator in decorators -%}
+{% for icon in decorator.icons -%}
+.treeview-{{ decorator.name }}-{{ icon.name }} {
+  {{ icon.style }}
+}
+{% endfor -%}
+{% endfor -%}
+
+.treeview li.collapsible > :not(ul) {
+  cursor: pointer;
+}
+
+.treeview li.collapsible > *:first-child::after {
+  content: "";
+  width: .75em;
+  height: .75em;
+  background: currentColor;
+  transform: translateY(0.1em);
+  mask-image: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" /></svg>');
+}
+
+.treeview li.collapsible.collapsed > *:first-child::after {
+  mask-image: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" /></svg>');
+}

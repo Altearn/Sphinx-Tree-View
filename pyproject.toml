@@ -4,20 +4,27 @@ build-backend = "pdm.backend"
 
 [project]
 name = "sphinx-treeview"
-version = "1.0.2"
+version = "1.1.0"
 description = "Add support for tree view to Sphinx."
-authors = [{ name = "theogiraudet", email = "theo.giraudet@altearn.xyz" }, { name = "Aksiome", email = "maxime.calmon@altearn.xyz" }]
+authors = [
+    { name = "theogiraudet", email = "theo.giraudet@altearn.xyz" },
+    { name = "Aksiome", email = "maxime.calmon@altearn.xyz" }
+]
 dependencies = ["sphinx", "jinja2"]
 requires-python = ">=3.11"
 license = { text = "MPL-2.0" }
 readme = "README.md"
 classifiers = [
     "Intended Audience :: Developers",
-    "Framework :: Sphinx :: Extension", 
+    "Framework :: Sphinx :: Extension",
     "License :: OSI Approved :: Mozilla Public License 2.0 (MPL 2.0)",
     "Programming Language :: Python :: 3.11"
 ]
 
+[project.optional-dependencies]
+docs = ["myst-parser", "furo", "sphinx-inline-tabs"]
+
 [project.urls]
+Documentation = "https://sphinx-treeview.readthedocs.io"
 Repository = "https://github.com/Altearn/Sphinx-Tree-View"
 Issues = "https://github.com/Altearn/Sphinx-Tree-View/issues"
