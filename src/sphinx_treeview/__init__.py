@@ -6,7 +6,6 @@ from typing import Any, List
 
 from jinja2 import Environment, FileSystemLoader
 from sphinx.application import Sphinx
-from sphinx.config import Config
 from sphinx.util import logging
 
 from .decorator import DecoratorType, images_to_decorator_icons
@@ -27,9 +26,9 @@ class DefaultDecoratorRegistry(Enum):
     DIR = "dir"
 
 
-def config_inited(app: Sphinx, config: Config) -> None:
-    decorators = config.stv_decorators or []
-    if not config.stv_disable_default_decorators:
+def builder_inited(app: Sphinx) -> None:
+    decorators = app.config.stv_decorators or []
+    if not app.config.stv_disable_default_decorators:
         decorators.extend(load_default_decorators())
     decorators = validate_decorators(decorators)
 
@@ -39,6 +38,8 @@ def config_inited(app: Sphinx, config: Config) -> None:
     css = css_template.render(decorators=decorators)
     (STATIC_DIR / "treeview.css").write_text(css, encoding="utf-8")
     copy(ASSETS_DIR / "treeview.js", STATIC_DIR / "treeview.js")
+
+    app.config.html_static_path.append(str(STATIC_DIR))
     app.add_css_file("treeview.css")
     app.add_js_file("treeview.js")
     logger.verbose("CSS and JS files generated and added.")
@@ -70,8 +71,7 @@ def setup(app: Sphinx):
     app.add_config_value('stv_disable_default_decorators', False, 'html')
     logger.verbose("Tree view added.")
 
-    app.config.html_static_path.append(str(STATIC_DIR))
-    app.connect("config-inited", config_inited)
+    app.connect("builder-inited", builder_inited)
 
     return {
         "version": metadata.version('sphinx-treeview'),
