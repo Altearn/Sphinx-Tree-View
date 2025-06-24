@@ -16,9 +16,6 @@
 }
 
 .treeview li > :not(ul) {
-  display: flex;
-  align-items: center;
-  gap: calc(var(--treeview-spacing) * 1.5);
   margin: 0!important;
   padding: 0!important;
 }
@@ -56,6 +53,8 @@
   background-repeat: no-repeat;
   width: var(--treeview-icon-width);
   height: var(--treeview-icon-height);
+  vertical-align: middle;
+  margin-top: -.125em;
 }
 
 {% for decorator in decorators -%}
@@ -72,6 +71,9 @@
 
 .treeview li.collapsible > *:first-child::after {
   content: "";
+  display: inline-block;
+  margin-top: -.125em;
+  margin-left: .5rem;
   width: .75em;
   height: .75em;
   background: currentColor;
